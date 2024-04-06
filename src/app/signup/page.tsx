@@ -1,5 +1,6 @@
 import Link from "next/link"
 import styles from "./signup.module.css"
+import Image from "next/image";
 
 export default function SignUp () {
     return (
@@ -9,7 +10,7 @@ export default function SignUp () {
         <form className={styles.modalFormLogin}>
           <Link href="/">
             <div className={styles.modalLogo}>
-              <img src="../img/logo_modal.png" alt="logo" />
+              <Image src="/img/logo_modal.png" alt="logo" width={140} height={21} />
             </div>
           </Link>
           <input

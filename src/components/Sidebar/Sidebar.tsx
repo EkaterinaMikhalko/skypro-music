@@ -1,5 +1,6 @@
 import Link from "next/link";
-import styles from "./Sidebar.module.css"
+import styles from "./Sidebar.module.css";
+import Image from "next/image";
 
 export default function Sidebar() {
   return (
@@ -9,9 +10,9 @@ export default function Sidebar() {
           <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
           <div className={styles.sidebarIcon}>
             <Link href="/signin">
-            <svg>
-              <use xlinkHref="img/icon/sprite.svg#logout" />
-            </svg>
+              <svg>
+                <use xlinkHref="img/icon/sprite.svg#logout" />
+              </svg>
             </Link>
           </div>
         </div>
@@ -19,28 +20,34 @@ export default function Sidebar() {
           <div className={styles.sidebarList}>
             <div className={styles.sidebarItem}>
               <Link className={styles.sidebarLink} href="#">
-                <img
-                  className={styles.sidebarImg}
-                  src="img/playlist01.png"
+                <Image
                   alt="day's playlist"
+                  className={styles.sidebarImg}
+                  width={250}
+                  height={150}
+                  src="/img/playlist01.png"
                 />
               </Link>
             </div>
             <div className={styles.sidebarItem}>
               <Link className={styles.sidebarLink} href="#">
-                <img
+                <Image
                   className={styles.sidebarImg}
-                  src="img/playlist02.png"
+                  src="/img/playlist02.png"
                   alt="day's playlist"
+                  width={250}
+                  height={150}
                 />
               </Link>
             </div>
             <div className={styles.sidebarItem}>
               <Link className={styles.sidebarLink} href="#">
-                <img
+                <Image
                   className={styles.sidebarImg}
-                  src="img/playlist03.png"
+                  src="/img/playlist03.png"
                   alt="day's playlist"
+                  width={250}
+                  height={150}
                 />
               </Link>
             </div>

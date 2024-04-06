@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./signin.module.css"
 import classNames from "classnames";
+import Image from "next/image";
 
 export default function SigninPage () {
     return (
@@ -10,7 +11,7 @@ export default function SigninPage () {
         <form className={styles.modalFormLogin} action="#">
           <Link href="/">
             <div className={styles.modalLogo}>
-              <img src="../img/logo_modal.png" alt="logo" />
+              <Image src="/img/logo_modal.png" alt="logo"  width={140} height={21} />
             </div>
           </Link>
           <input
