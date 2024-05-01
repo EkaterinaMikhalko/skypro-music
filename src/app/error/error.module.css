@@ -1,0 +1,26 @@
+.errorPage {
+  width: 100%;
+  min-height: 100%;
+  background-color: #181818;
+}
+
+.errorTitle {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.8px;
+  margin-bottom: 45px;
+}
+
+.buttonError {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.8px;
+  margin-bottom: 45px;
+  border-radius: 60px;
+  border: 1px solid #ffffff;
+  padding: 6px 20px;
+}

@@ -14,11 +14,13 @@ export default function FilterItem({ handleFilterClick, title, list, isOpened }:
       <div onClick={()=> handleFilterClick(title)} className={classNames(styles.filterButton, styles._btnText)}>
         {title}
       </div>
-     {isOpened && ( <ul>
+      <div>
+     {isOpened && ( <ul className={styles.filterListDown}>
         {list.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>)}
+      </div>
     </>
   );
 }

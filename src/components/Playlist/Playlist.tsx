@@ -5,12 +5,11 @@ import { getTracks } from "@/api/tracks";
 import { trackType } from "../types";
 
 export default async function Playlist() {
-  let tracksData:trackType[];
+  let tracksData: trackType[];
   try {
-    tracksData = await getTracks ();
-  }
-  catch (error: any) {
-    throw new Error (error.message)
+    tracksData = await getTracks();
+  } catch (error: any) {
+    throw new Error(error.message);
   }
   return (
     <div className={styles.centerblockContent}>
@@ -32,7 +31,8 @@ export default async function Playlist() {
       </div>
       <div className={styles.contentPlaylist}>
         {tracksData.map((trackData) => (
-          <Track key={trackData.id}
+          <Track
+            key={trackData.id}
             name={trackData.name}
             author={trackData.author}
             album={trackData.author}
@@ -42,10 +42,3 @@ export default async function Playlist() {
     </div>
   );
 }
-
-// // Обратите внимание, что функция компонента также является асинхронной
-// export default async function HomePage() {
-//     const data = await getData();
-
-//     return <main>/* Некий контент */</main>;
-//   }
