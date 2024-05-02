@@ -35,3 +35,8 @@
   left: 386px;
   top: 288px;
 }
+
+.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
