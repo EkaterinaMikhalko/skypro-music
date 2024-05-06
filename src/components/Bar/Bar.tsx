@@ -2,7 +2,13 @@
 import Link from "next/link";
 import styles from "./Bar.module.css";
 import classNames from "classnames";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { trackType } from "../types";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
@@ -15,6 +21,8 @@ export default function Bar({ track }: BarType) {
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isLoop, setIsLoop] = useState<boolean>(false);
+  const [volume, setVolume] = useState(0.5);
 
   const duration = audioRef.current?.duration;
 
@@ -26,6 +34,18 @@ export default function Bar({ track }: BarType) {
         audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toogleLoop = () => {
+    if (audioRef.current) {
+      if (isLoop) {
+        audioRef.current.loop = false;
+      } else {
+        audioRef.current.loop = true;
+      }
+
+      setIsLoop((repeat) => !repeat);
     }
   };
 
@@ -41,6 +61,17 @@ export default function Bar({ track }: BarType) {
       audioRef.current.currentTime = Number(event.target.value);
     }
   };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
+  const changeVolume = (event: ChangeEvent<HTMLInputElement>) => {
+    setVolume(Number(event.target.value));
+  };
+
   return (
     <div className={styles.bar}>
       <div className={styles.barContent}>
@@ -78,14 +109,19 @@ export default function Bar({ track }: BarType) {
                 </svg>
               </div>
               <div
-                className={classNames(styles.playerBtnRepeat, styles._btnIcon)}
+                onClick={toogleLoop}
+                className={classNames(styles.playerBtnRepeat, styles.btnIcon)}
               >
-                <svg className={styles.playerBtnRepeatSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+                <svg
+                  className={classNames(styles.playerBtnRepeatSvg, {
+                    [styles.playerBtnRepeatSvgActive]: isLoop,
+                  })}
+                >
+                  <use xlinkHref={`img/icon/sprite.svg#icon-repeat`} />
                 </svg>
               </div>
               <div
-                className={classNames(styles.playerBtnShuffle, styles._btnIcon)}
+                className={classNames(styles.playerBtnShuffle, styles.btnIcon)}
               >
                 <svg className={styles.playerBtnShuffleSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
@@ -112,7 +148,7 @@ export default function Bar({ track }: BarType) {
               </div>
               <div className={styles.trackPlayLikeDis}>
                 <div
-                  className={classNames(styles.trackPlayLike, styles._btnIcon)}
+                  className={classNames(styles.trackPlayLike, styles.btnIcon)}
                 >
                   <svg className={styles.trackPlayLikeSvg}>
                     <use xlinkHref="img/icon/sprite.svg#icon-like" />
@@ -121,7 +157,7 @@ export default function Bar({ track }: BarType) {
                 <div
                   className={classNames(
                     styles.trackPlayDislike,
-                    styles._btnIcon
+                    styles.btnIcon
                   )}
                 >
                   <svg className={styles.trackPlayDislikeSvg}>
@@ -142,7 +178,11 @@ export default function Bar({ track }: BarType) {
                 <input
                   className={classNames(styles.volumeProgressLine, styles._btn)}
                   type="range"
-                  name="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={volume}
+                  onChange={changeVolume}
                 />
               </div>
             </div>
