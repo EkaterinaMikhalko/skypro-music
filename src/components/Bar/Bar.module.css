@@ -351,3 +351,14 @@
   fill: transparent;
   stroke: #ffffff;
 }
+
+.trackTime {
+  display: flex;
+  justify-content: flex-end;
+  line-height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+  color: #696969;
+}

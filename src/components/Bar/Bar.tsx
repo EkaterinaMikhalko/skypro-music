@@ -76,6 +76,9 @@ export default function Bar({ track }: BarType) {
     <div className={styles.bar}>
       <div className={styles.barContent}>
         <audio ref={audioRef} src={track.track_file}></audio>
+        <div className={styles.trackTime}>
+          <div>{Math.round(currentTime)}/{track.duration_in_seconds}</div>
+        </div>
         <ProgressBar
           max={duration}
           value={currentTime}
