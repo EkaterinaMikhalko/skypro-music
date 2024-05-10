@@ -1,18 +1,14 @@
-"use client";
 import Image from "next/image";
 import Menu from "@/components/Menu/Menu";
 import Centerblock from "@/components/Centerblock/Centerblock";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Bar from "@/components/Bar/Bar";
-import { useState } from "react";
-import { trackType } from "@/components/types";
 import Playlist from "@/components/Playlist/Playlist";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const [track, setTrack] = useState<trackType | null>(null);
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <div className="container">
         <main className="main">
           <nav className="main__nav nav">
@@ -29,11 +25,11 @@ export default function Home() {
           </nav>
           <div className={styles.mainCenterblock}>
             <Centerblock />
-            <Playlist setTrack={setTrack} />
+            <Playlist/>
           </div>
           <Sidebar />
         </main>
-        {track && <Bar track={track} />}
+        <Bar/>
         <footer className="footer" />
       </div>
     </div>

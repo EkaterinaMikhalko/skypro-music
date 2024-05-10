@@ -1,3 +1,10 @@
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #383838;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,6 +12,20 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+}
+
+.mainNav {
+  width: 244px;
+  background-color: #181818;
+  padding: 20px 0 20px 36px;
+}
+
+.container {
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  background-color: #181818;
 }
 
 .description {

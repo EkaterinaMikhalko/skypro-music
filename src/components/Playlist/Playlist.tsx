@@ -3,29 +3,24 @@ import Track from "../Track/Track";
 import styles from "./Playlist.module.css";
 import { getTracks } from "@/api/tracks";
 import { trackType } from "../types";
-import { useEffect, useState } from "react";
 
-type PlaylistType = {
-  setTrack: (param: trackType) => void;
-};
+export default async function Playlist() {
+  let tracksData: trackType[];
+  try {
+    tracksData = await getTracks();
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 
-export default function Playlist({ setTrack }: PlaylistType) {
-  // let tracksData: trackType[];
-  // try {
-  //   tracksData = await getTracks();
-  // } catch (error: any) {
-  //   throw new Error(error.message);
-  // }
+  // const [tracksData, setTracksData] = useState<trackType[]>([]);
 
-  const [tracksData, setTracksData] = useState<trackType[]>([]);
-
-  useEffect(() => {
-    getTracks()
-      .then((data: trackType[]) => setTracksData(data))
-      .catch((error: any) => {
-        throw new Error(error.message);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getTracks()
+  //     .then((data: trackType[]) => setTracksData(data))
+  //     .catch((error: any) => {
+  //       throw new Error(error.message);
+  //     });
+  // }, []);
 
   return (
     <div className={styles.centerblockContent}>
@@ -46,15 +41,8 @@ export default function Playlist({ setTrack }: PlaylistType) {
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        {tracksData.map((trackData) => (
-          <Track
-            onClick={() => setTrack(trackData)}
-            key={trackData.id}
-            name={trackData.name}
-            author={trackData.author}
-            album={trackData.author}
-            duration_in_seconds={trackData.duration_in_seconds}
-          />
+        {tracksData.map((track) => (
+          <Track track={track} tracksData={tracksData} />
         ))}
       </div>
     </div>
