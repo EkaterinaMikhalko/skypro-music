@@ -4,15 +4,16 @@ import styles from "./Bar.module.css";
 import classNames from "classnames";
 import {
   ChangeEvent,
-  MouseEventHandler,
   useEffect,
   useRef,
   useState,
 } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setNextTrack, setPrevTrack } from "@/store/features/playlistSlice";
 
 export default function Bar() {
+  const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const audioRef = useRef<null | HTMLAudioElement>(null);
 
@@ -90,7 +91,9 @@ export default function Bar() {
             <div className={styles.barPlayerBlock}>
               <div className={styles.barPlayer}>
                 <div className={styles.playerControls}>
-                  <div className={styles.playerBtnPrev}>
+                  <div
+                  onClick={()=>dispatch(setPrevTrack())}
+                  className={styles.playerBtnPrev}>
                     <svg className={styles.playerBtnPrevSvg}>
                       <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                     </svg>
@@ -107,7 +110,9 @@ export default function Bar() {
                       />
                     </svg>
                   </div>
-                  <div className={styles.playerBtnNext}>
+                  <div 
+                  onClick={()=>dispatch(setNextTrack())}
+                  className={styles.playerBtnNext}>
                     <svg className={styles.playerBtnNextSvg}>
                       <use xlinkHref="img/icon/sprite.svg#icon-next" />
                     </svg>

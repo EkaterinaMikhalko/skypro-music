@@ -2,7 +2,8 @@
 import styles from "./Track.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { trackType } from "../types";
-import { setCurrentTrack } from "@/store/features/playListSlice";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
+
 
 type TrackType = {
   track: trackType;
