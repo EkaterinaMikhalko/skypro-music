@@ -12,16 +12,6 @@ export default async function Playlist() {
     throw new Error(error.message);
   }
 
-  // const [tracksData, setTracksData] = useState<trackType[]>([]);
-
-  // useEffect(() => {
-  //   getTracks()
-  //     .then((data: trackType[]) => setTracksData(data))
-  //     .catch((error: any) => {
-  //       throw new Error(error.message);
-  //     });
-  // }, []);
-
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>

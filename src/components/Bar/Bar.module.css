@@ -362,3 +362,10 @@
   text-align: right;
   color: #696969;
 }
+
+.playerBtnShuffleSvgActive {
+  width: 18px;
+  height: 12px;
+  fill: transparent;
+  stroke: #ffffff;
+}
