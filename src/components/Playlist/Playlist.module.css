@@ -6,7 +6,12 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  height: 600px;
+  overflow-y: auto;
+  scrollbar-color: #2e2e2e black;
+  
 }
+
 
 .contentTitle {
   display: -webkit-box;

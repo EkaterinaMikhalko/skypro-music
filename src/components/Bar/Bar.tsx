@@ -58,7 +58,7 @@ export default function Bar() {
     audioRef.current?.addEventListener("timeupdate", () =>
       setCurrentTime(audioRef.current!.currentTime)
     );
-  }, []);
+  }, [audioRef.current]);
 
   useEffect(() => {
     if (audioRef.current) {
