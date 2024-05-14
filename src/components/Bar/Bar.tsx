@@ -9,6 +9,7 @@ import {
   setIsShuffle,
   setNextTrack,
   setPrevTrack,
+  setIsPlaying,
 } from "@/store/features/playlistSlice";
 
 export default function Bar() {
@@ -17,23 +18,37 @@ export default function Bar() {
   const audioRef = useRef<null | HTMLAudioElement>(null);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  //const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoop, setIsLoop] = useState<boolean>(false);
   const [volume, setVolume] = useState(0.5);
+  const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
   const isShuffled = useAppSelector((state) => state.playlist.isShuffled);
 
   const duration = audioRef.current?.duration;
 
   const togglePlay = () => {
     if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+      //if (isPlaying)
+      {
+        dispatch(setIsPlaying(!isPlaying));
       }
-      setIsPlaying(!isPlaying);
+
+      //   {
+      //     audioRef.current.pause();
+      //   } else {
+      //     audioRef.current.play();
+      //   }
+      //   setIsPlaying(!isPlaying);
     }
   };
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play();
+    } else {
+      audioRef.current?.pause();
+    }
+  }, [isPlaying]);
 
   const toogleLoop = () => {
     if (audioRef.current) {
@@ -100,6 +115,7 @@ export default function Bar() {
         <div className={styles.bar}>
           <div className={styles.barContent}>
             <audio
+            autoPlay
               ref={audioRef}
               src={currentTrack.track_file}
               onChange={handleEnded}

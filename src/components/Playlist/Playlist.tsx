@@ -32,7 +32,7 @@ export default async function Playlist() {
       </div>
       <div className={styles.contentPlaylist}>
         {tracksData.map((track) => (
-          <Track track={track} tracksData={tracksData} />
+          <Track key={track.id} track={track} tracksData={tracksData} />
         ))}
       </div>
     </div>
