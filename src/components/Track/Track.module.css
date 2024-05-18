@@ -32,6 +32,7 @@
   -ms-flex-align: center;
   align-items: center;
   width: 447px;
+  cursor: pointer;
 }
 
 .trackTitleImage {
@@ -49,6 +50,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
+  cursor: pointer;
 }
 
 .trackTitleSvg {
@@ -56,6 +58,7 @@
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
+  
 }
 
 .trackTitleLink {
@@ -82,6 +85,7 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
 .trackAuthorLink {
@@ -95,6 +99,7 @@
 
 .trackAlbum {
   width: 245px;
+  cursor: pointer;
 }
 
 .trackAlbumLink {
@@ -128,7 +133,26 @@
 .trackTime {
 }
 
-/* .playingDot {
+.playingDot {
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+  display: block;
+  /* animation: bubble_out 0.6s ease-in-out infinite both;
+}
+
+@keyframes bubble_out {
+  0%,
+  to {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  } */
+}
+
+.playingDotActive {
   width: 16px;
   height: 16px;
   background-color: #b672ff;
@@ -145,4 +169,4 @@
   50% {
     transform: scale(1);
   }
-} */
+}
