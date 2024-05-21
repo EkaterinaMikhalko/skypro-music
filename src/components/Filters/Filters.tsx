@@ -1,5 +1,6 @@
 "use client";
 
+import { trackType } from "../types";
 import styles from "./Filter.module.css";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";
@@ -7,19 +8,21 @@ import { useState } from "react";
 const filters = [
   {
     title: "исполнителю",
-    list: ["1", "2"],
+    value: "author",
   },
   {
     title: "году выпуска",
-    list: ["24", "23"],
+    value: "order",
   },
   {
     title: "жанру",
-    list: ["рок", "поп"],
+    value: "genre",
   },
 ];
 
-export default function Filter() {
+
+
+export default function Filter({ tracksData }: { tracksData: trackType[] }) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   function handleFilterClick(newFilter: string) {
     setActiveFilter((prev) => (prev === newFilter ? null : newFilter));
@@ -27,15 +30,33 @@ export default function Filter() {
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      {filters.map((filter) => (
-        <FilterItem
-        key = {filter.title}
-          isOpened={activeFilter === filter.title}
-          handleFilterClick={handleFilterClick}
-          title={filter.title}
-          list={filter.list}
-        />
-      ))}
+
+      <FilterItem
+      
+        isOpened={activeFilter === filters[0].title}
+        handleFilterClick={handleFilterClick}
+        title={filters[0].title}
+        value={filters[0].value}
+        tracksData={tracksData}
+      />
+
+      <FilterItem
+      
+        isOpened={activeFilter === filters[1].title}
+        handleFilterClick={handleFilterClick}
+        title={filters[1].title}
+        value={filters[1].value}
+        tracksData={tracksData}
+      />
+
+      <FilterItem
+      
+        isOpened={activeFilter === filters[2].title}
+        handleFilterClick={handleFilterClick}
+        title={filters[2].title}
+        value={filters[2].value}
+        tracksData={tracksData}
+      />
     </div>
   );
 }

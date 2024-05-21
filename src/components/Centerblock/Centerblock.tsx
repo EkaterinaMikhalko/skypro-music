@@ -1,7 +1,8 @@
 import styles from "./Centerblock.module.css";
 import Filter from "../Filters/Filters";
+import { trackType } from "../types";
 
-export default function Centerblock() {
+export default function Centerblock(tracksData: trackType[]) {
   return (
     <>
       <div className={styles.centerblockSearch}>
@@ -16,7 +17,7 @@ export default function Centerblock() {
         />
       </div>
       <h2 className={styles.centerblockH2}>Треки</h2>
-      <Filter />
+      <Filter tracksData={tracksData} />
     </>
   );
 }
