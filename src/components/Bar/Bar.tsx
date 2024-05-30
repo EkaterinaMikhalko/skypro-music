@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styles from "./Bar.module.css";
 import classNames from "classnames";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
@@ -28,17 +28,9 @@ export default function Bar() {
 
   const togglePlay = () => {
     if (audioRef.current) {
-      //if (isPlaying)
       {
         dispatch(setIsPlaying(!isPlaying));
       }
-
-      //   {
-      //     audioRef.current.pause();
-      //   } else {
-      //     audioRef.current.play();
-      //   }
-      //   setIsPlaying(!isPlaying);
     }
   };
 
@@ -62,12 +54,12 @@ export default function Bar() {
     }
   };
 
-  const handleSeek = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       setCurrentTime(Number(event.target.value));
       audioRef.current.currentTime = Number(event.target.value);
     }
-  };
+  },[]);
 
   useEffect(() => {
     audioRef.current?.addEventListener("timeupdate", () =>

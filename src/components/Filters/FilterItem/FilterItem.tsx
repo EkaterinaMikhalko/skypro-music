@@ -1,6 +1,8 @@
 import { trackType } from "@/components/types";
 import styles from "./FilterItem.module.css";
 import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setFilters } from "@/store/features/playlistSlice";
 
 type FilterItemType = {
   title: string;
@@ -19,6 +21,13 @@ export default function FilterItem({
   isOpened,
   tracksData,
 }: FilterItemType) {
+  const authorsList = useAppSelector(
+    (state) => state.playlist.filterOptions.author
+  );
+  const genresList = useAppSelector(
+    (state) => state.playlist.filterOptions.genre
+  );
+  const dispatch = useAppDispatch();
   const getFilterList = () => {
     if (value !== "order") {
       const array = new Set(
@@ -29,25 +38,49 @@ export default function FilterItem({
     return order;
   };
 
+  const toggleFilter = (item: string) => {
+    if (value !== "order") {
+      dispatch(
+        setFilters({
+          author: authorsList.includes(item)
+            ? authorsList.filter((el) => el !== item)
+            : [...authorsList, item],
+          genre: genresList.includes(item)
+            ? genresList.filter((el) => el !== item)
+            : [...genresList, item],
+        })
+      );
+    } else {
+      dispatch(setFilters({order:item}))
+    }
+  };
   getFilterList();
   return (
     <>
-      <div
-        onClick={() => handleFilterClick(title)}
-        className={classNames(styles.filterButton, styles._btnText, {
-          [styles.active]: isOpened,
-        })}
-      >
-        {title}
-      </div>
       <div>
-        {isOpened && (
-          <ul className={styles.filterListDown}>
-            {getFilterList().map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        )}
+        <div
+          onClick={() => handleFilterClick(title)}
+          className={classNames(styles.filterButton, styles._btnText, {
+            [styles.active]: isOpened,
+          })}
+        >
+          {title}
+          {authorsList.length > 0 ? (
+            <div className={styles.filteredItems}>{authorsList.length}</div>
+          ) : null}
+        </div>
+
+        <div>
+          {isOpened && (
+            <ul className={styles.filterListDown}>
+              {getFilterList().map((item) => (
+                <li onClick={() => toggleFilter(item)} key={item}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </>
   );

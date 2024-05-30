@@ -8,9 +8,13 @@ type PlaylistStateType = {
   isShuffled: boolean;
   isPlaying: boolean;
   filterOptions: {
-    authors: string[];
+    author: string[];
     searchValue: string;
+    genre: string[];
+    order: string;
   };
+  filteredTracks: trackType[];
+  initialTracks: trackType[];
 };
 
 const initialState: PlaylistStateType = {
@@ -20,15 +24,26 @@ const initialState: PlaylistStateType = {
   isPlaying: false,
   isShuffled: false,
   filterOptions: {
-    authors: [],
+    author: [],
     searchValue: "",
+    genre: [],
+    order: "",
   },
+  filteredTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
+    setInitialTracks: (
+      state,
+      action: PayloadAction<{ initialTracks: trackType[] }>
+    ) => {
+      state.initialTracks = action.payload.initialTracks;
+      state.filteredTracks = action.payload.initialTracks;
+    },
     setIsPlaying: (state, action) => {
       state.isPlaying = action.payload;
     },
@@ -74,19 +89,65 @@ const playlistSlice = createSlice({
 
     setFilters: (
       state,
-      action: PayloadAction<{ authors: string[]; searchValue: string }>
+      action: PayloadAction<{
+        author?: string[];
+        searchValue?: string;
+        genre?: string[];
+        order: string;
+      }>
     ) => {
       state.filterOptions = {
-        authors: action.payload.authors || state.filterOptions.authors,
-        searchValue: action.payload.searchValue || state.filterOptions.searchValue,
+        author: action.payload.author || state.filterOptions.author,
+        genre: action.payload.genre || state.filterOptions.genre,
+        order: action.payload.order || state.filterOptions.order,
+        searchValue:
+          action.payload.searchValue || state.filterOptions.searchValue,
       };
+      const filteredArr = state.initialTracks.filter((track) => {
+        const hasAuthors = state.filterOptions.author.length !== 0;
+        const isAuthors = hasAuthors
+          ? state.filterOptions.author.includes(track.author)
+          : true;
+        const hasGenres = state.filterOptions.genre.length !== 0;
+        const isGenres = hasGenres
+          ? state.filterOptions.genre.includes(track.genre)
+          : true;
+        const hasSearchValue =
+          track.name
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase()) ||
+          track.author
+            .toLowerCase()
+            .includes(state.filterOptions.searchValue.toLowerCase());
+        return (isAuthors || isGenres) && hasSearchValue;
+      });
+      console.log(filteredArr)
+      switch (state.filterOptions.order) {
+        case "Сначала новые":
+          filteredArr.sort(
+            (a, b) =>
+              new Date(b.release_date).getTime() -
+              new Date(a.release_date).getTime()
+          );
+          break;
+        case "Сначала старые":
+          filteredArr.sort(
+            (a, b) =>
+              new Date(a.release_date).getTime() -
+              new Date(b.release_date).getTime()
+          );
+          break;
+        default:
+          filteredArr;
+          break;
+      }
+      state.filteredTracks = filteredArr;
     },
   },
 });
 
-
-
 export const {
+  setInitialTracks,
   setCurrentTrack,
   setNextTrack,
   setPrevTrack,
