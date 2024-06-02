@@ -27,7 +27,7 @@ const initialState: PlaylistStateType = {
     author: [],
     searchValue: "",
     genre: [],
-    order: "",
+    order: "по умолчанию",
   },
   filteredTracks: [],
   initialTracks: [],
@@ -93,7 +93,7 @@ const playlistSlice = createSlice({
         author?: string[];
         searchValue?: string;
         genre?: string[];
-        order: string;
+        order?: string;
       }>
     ) => {
       state.filterOptions = {
@@ -119,18 +119,18 @@ const playlistSlice = createSlice({
           track.author
             .toLowerCase()
             .includes(state.filterOptions.searchValue.toLowerCase());
-        return (isAuthors || isGenres) && hasSearchValue;
+        return isAuthors && isGenres && hasSearchValue;
       });
       console.log(filteredArr)
       switch (state.filterOptions.order) {
-        case "Сначала новые":
+        case "сначала новые":
           filteredArr.sort(
             (a, b) =>
               new Date(b.release_date).getTime() -
               new Date(a.release_date).getTime()
           );
           break;
-        case "Сначала старые":
+        case "сначала старые":
           filteredArr.sort(
             (a, b) =>
               new Date(a.release_date).getTime() -

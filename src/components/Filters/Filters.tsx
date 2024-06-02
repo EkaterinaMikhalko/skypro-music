@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppSelector } from "@/hooks";
 import { trackType } from "../types";
 import styles from "./Filter.module.css";
 import FilterItem from "./FilterItem/FilterItem";
@@ -26,6 +27,7 @@ const filters: filtersType[] = [
 
 export default function Filter({ tracksData }: { tracksData: trackType[] }) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+const {author, genre,order} = useAppSelector((store)=> store.playlist.filterOptions)
   function handleFilterClick(newFilter: string) {
     setActiveFilter((prev) => (prev === newFilter ? null : newFilter));
     console.log(tracksData)
@@ -39,7 +41,8 @@ export default function Filter({ tracksData }: { tracksData: trackType[] }) {
         handleFilterClick={handleFilterClick}
         title={filters[0].title}
         value={filters[0].value}
-        tracksData={tracksData}
+        optionList={author}
+        
       />
 
       <FilterItem
@@ -47,7 +50,7 @@ export default function Filter({ tracksData }: { tracksData: trackType[] }) {
         handleFilterClick={handleFilterClick}
         title={filters[1].title}
         value={filters[1].value}
-        tracksData={tracksData}
+        optionList={order}
       />
 
       <FilterItem
@@ -55,7 +58,7 @@ export default function Filter({ tracksData }: { tracksData: trackType[] }) {
         handleFilterClick={handleFilterClick}
         title={filters[2].title}
         value={filters[2].value}
-        tracksData={tracksData}
+        optionList={genre}
       />
     </div>
   );
