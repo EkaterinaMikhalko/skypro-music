@@ -11,6 +11,7 @@ import {
   setPrevTrack,
   setIsPlaying,
 } from "@/store/features/playlistSlice";
+import { formatDurationInMin } from "@/utils";
 
 export default function Bar() {
   const dispatch = useAppDispatch();
@@ -18,7 +19,6 @@ export default function Bar() {
   const audioRef = useRef<null | HTMLAudioElement>(null);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
-  //const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLoop, setIsLoop] = useState<boolean>(false);
   const [volume, setVolume] = useState(0.5);
   const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
@@ -40,7 +40,12 @@ export default function Bar() {
     } else {
       audioRef.current?.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, currentTrack]);
+
+  useEffect(() => {
+    audioRef.current?.play();
+    dispatch (setIsPlaying(true));
+  }, [currentTrack]);
 
   const toogleLoop = () => {
     if (audioRef.current) {
@@ -59,13 +64,14 @@ export default function Bar() {
       setCurrentTime(Number(event.target.value));
       audioRef.current.currentTime = Number(event.target.value);
     }
-  },[]);
+  }, [audioRef.current]);
 
   useEffect(() => {
     audioRef.current?.addEventListener("timeupdate", () =>
       setCurrentTime(audioRef.current!.currentTime)
     );
-  }, [audioRef.current]);
+  }, [currentTrack]);
+
 
   useEffect(() => {
     if (audioRef.current) {
@@ -101,20 +107,22 @@ export default function Bar() {
     }
   };
 
+
   return (
     <>
       {currentTrack && (
         <div className={styles.bar}>
           <div className={styles.barContent}>
             <audio
-            autoPlay
+              autoPlay
               ref={audioRef}
               src={currentTrack.track_file}
               onChange={handleEnded}
             ></audio>
             <div className={styles.trackTime}>
               <div>
-                {Math.round(currentTime)}/{currentTrack.duration_in_seconds}
+                {formatDurationInMin(currentTime)}/
+                {formatDurationInMin(currentTrack.duration_in_seconds)}
               </div>
             </div>
             <ProgressBar

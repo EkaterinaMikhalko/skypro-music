@@ -101,7 +101,7 @@ const playlistSlice = createSlice({
         genre: action.payload.genre || state.filterOptions.genre,
         order: action.payload.order || state.filterOptions.order,
         searchValue:
-          action.payload.searchValue || state.filterOptions.searchValue,
+          typeof action.payload.searchValue === "string" ? action.payload.searchValue : state.filterOptions.searchValue,
       };
       const filteredArr = state.initialTracks.filter((track) => {
         const hasAuthors = state.filterOptions.author.length !== 0;
@@ -121,7 +121,6 @@ const playlistSlice = createSlice({
             .includes(state.filterOptions.searchValue.toLowerCase());
         return isAuthors && isGenres && hasSearchValue;
       });
-      console.log(filteredArr)
       switch (state.filterOptions.order) {
         case "сначала новые":
           filteredArr.sort(

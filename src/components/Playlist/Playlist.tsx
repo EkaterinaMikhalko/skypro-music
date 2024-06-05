@@ -13,12 +13,15 @@ export default function Playlist() {
   const dispatch = useAppDispatch();
   const [tracks, setTracks] = useState<trackType[]>([]);
   const filteredTracks = useAppSelector((state)=> state.playlist.filteredTracks)
+  const [loading, setLoading] = useState (true);
   let tracksData: trackType[];
 
   useEffect(() => {
+
     getTracks().then((tracksData) => {
       setTracks(tracksData)
       dispatch(setInitialTracks({ initialTracks: tracksData }));
+      setLoading (false);
     });
   }, [dispatch]);
 
@@ -44,9 +47,9 @@ export default function Playlist() {
           </div>
         </div>
         <div className={styles.contentPlaylist}>
-          {filteredTracks.map((track) => (
+          {loading ? "Идёт загрузка": filteredTracks.length ? filteredTracks.map((track) => (
             <Track key={track.id} track={track} tracksData={tracks} />
-          ))}
+          )) : "Ничего не найдено"}
         </div>
       </div>
     </>
