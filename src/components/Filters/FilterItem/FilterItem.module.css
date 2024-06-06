@@ -1,4 +1,9 @@
+.filterCount {
+  position: relative;
+  display: flex;
+}
 .filterButton {
+  /* position: relative; */
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -12,13 +17,13 @@
   margin-right: 10px;
 }
 
-._btnText:hover {
+.filterButton:hover {
   border-color: #d9b6ff;
   color: #d9b6ff;
   cursor: pointer;
 }
 
-._btnText:active {
+.filterButton:active {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
@@ -32,11 +37,38 @@
   background: #313131;
   border-radius: 12px;
   gap: 10px;
-  left: 386px;
-  top: 288px;
+  overflow-y: auto;
+  cursor: pointer;
 }
 
 .active {
   border-color: #ad61ff;
   color: #ad61ff;
+}
+
+.filteredItems {
+  position: absolute;
+  right: 0px;
+  bottom: 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: #ad61ff;
+  font-family: "Montserrat";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  text-align: center;
+  padding: 6px;
+}
+
+.filterItem {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.filterItemActive {
+  color: #b672ff;
+  text-decoration: underline;
 }
