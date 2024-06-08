@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { trackType } from "@/components/types";
 import { getTracks } from "@/api/tracks";
 import { setInitialTracks } from "@/store/features/playlistSlice";
+import Filter from "@/components/Filters/Filters";
+import styles from "@components/Centerblock/Centerblock.module.css";
 
 export default function MainTrackPage() {
   const dispatch = useAppDispatch();
@@ -19,5 +21,11 @@ export default function MainTrackPage() {
       dispatch(setInitialTracks({ initialTracks: tracksData }));
     });
   }, [dispatch]);
-  return <Playlist tracks={filteredTracks} playlist={tracks} />;
+  return (
+    <>
+    <h2 className={styles.centerblockH2}>Треки</h2>
+      <Filter />
+      <Playlist tracks={filteredTracks} playlist={tracks} />
+    </>
+  );
 }

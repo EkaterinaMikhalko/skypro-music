@@ -2,7 +2,6 @@ import Image from "next/image";
 import Bar from "@/components/Bar/Bar";
 import Centerblock from "@/components/Centerblock/Centerblock";
 import Menu from "@/components/Menu/Menu";
-import Playlist from "@/components/Playlist/Playlist";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import styles from "./layout.module.css";
 

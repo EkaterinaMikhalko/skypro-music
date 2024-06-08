@@ -22,7 +22,7 @@ export default function Playlist({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTracks().then((tracks) => {
+    getTracks().then(() => {
       // setTracks(tracksData)
       // dispatch(setInitialTracks({ initialTracks: tracksData }));
       setLoading(false);
@@ -31,7 +31,7 @@ export default function Playlist({
 
   return (
     <>
-      <Filter />
+      
 
       <div className={styles.centerblockContent}>
         <div className={styles.contentTitle}>
