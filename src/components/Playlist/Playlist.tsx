@@ -9,25 +9,29 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setInitialTracks } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
 
-export default function Playlist() {
-  const dispatch = useAppDispatch();
-  const [tracks, setTracks] = useState<trackType[]>([]);
-  const filteredTracks = useAppSelector((state)=> state.playlist.filteredTracks)
-  const [loading, setLoading] = useState (true);
-  let tracksData: trackType[];
+export default function Playlist({
+  tracks,
+  playlist,
+}: {
+  tracks: trackType[];
+  playlist: trackType[];
+}) {
+  // const dispatch = useAppDispatch();
+  // const [tracks, setTracks] = useState<trackType[]>([]);
+  //const filteredTracks = useAppSelector((state)=> state.playlist.filteredTracks)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    getTracks().then((tracksData) => {
-      setTracks(tracksData)
-      dispatch(setInitialTracks({ initialTracks: tracksData }));
-      setLoading (false);
+    getTracks().then((tracks) => {
+      // setTracks(tracksData)
+      // dispatch(setInitialTracks({ initialTracks: tracksData }));
+      setLoading(false);
     });
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
-      <Filter tracksData={tracks} />
+      <Filter />
 
       <div className={styles.centerblockContent}>
         <div className={styles.contentTitle}>
@@ -47,9 +51,13 @@ export default function Playlist() {
           </div>
         </div>
         <div className={styles.contentPlaylist}>
-          {loading ? "Идёт загрузка": filteredTracks.length ? filteredTracks.map((track) => (
-            <Track key={track.id} track={track} tracksData={tracks} />
-          )) : "Ничего не найдено"}
+          {loading
+            ? "Идёт загрузка"
+            : tracks?.length
+            ? tracks?.map((track) => (
+                <Track key={track.id} track={track} tracksData={playlist} />
+              ))
+            : "Ничего не найдено"}
         </div>
       </div>
     </>

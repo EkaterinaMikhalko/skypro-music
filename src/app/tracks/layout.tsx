@@ -6,9 +6,13 @@ import Playlist from "@/components/Playlist/Playlist";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import styles from "./layout.module.css";
 
-export default function TrackLayout ({children}) {
-    return (
-        <div className={styles.wrapper}>
+export default function TrackLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <div className={styles.wrapper}>
       <div className="container">
         <main className="main">
           <nav className="main__nav nav">
@@ -25,13 +29,13 @@ export default function TrackLayout ({children}) {
           </nav>
           <div className={styles.mainCenterblock}>
             <Centerblock />
-            <Playlist/>
+            {children}
           </div>
           <Sidebar />
         </main>
-        <Bar/>
+        <Bar />
         <footer className="footer" />
       </div>
     </div>
-    )
+  );
 }
