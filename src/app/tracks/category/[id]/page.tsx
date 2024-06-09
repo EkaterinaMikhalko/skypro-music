@@ -14,27 +14,27 @@ type CategoryType = {
 
 export default async function CategoryPage({ params }: CategoryType) {
   const categoryTracks = await getCategoryTracks(params.id);
-  let PlaylistTitle;
+  let playlistTitle;
   switch (params.id) {
     case "1":
-      PlaylistTitle = "Плейлист дня";
+      playlistTitle = "Плейлист дня";
       break;
 
     case "2":
-      PlaylistTitle = "100 танцевальных хитов";
+      playlistTitle = "100 танцевальных хитов";
       break;
 
     case "3":
-      PlaylistTitle = "Инди-заряд";
+      playlistTitle = "Инди-заряд";
       break;
 
     default:
-      PlaylistTitle = "Треки";
+      playlistTitle = "Треки";
       break;
   }
   return (
     <div>
-      <h2 className={styles.centerblockH2}>{PlaylistTitle}</h2>
+      <h2 className={styles.centerblockH2}>{playlistTitle}</h2>
       <Playlist tracks={categoryTracks} playlist={categoryTracks} />
     </div>
   );
