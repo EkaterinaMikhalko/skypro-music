@@ -1,7 +1,6 @@
 "use client";
 
 import { useAppSelector } from "@/hooks";
-import { trackType } from "../types";
 import styles from "./Filter.module.css";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";
@@ -25,12 +24,11 @@ const filters: filtersType[] = [
   },
 ];
 
-export default function Filter({ tracksData }: { tracksData: trackType[] }) {
+export default function Filter() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 const {author, genre,order} = useAppSelector((store)=> store.playlist.filterOptions)
   function handleFilterClick(newFilter: string) {
     setActiveFilter((prev) => (prev === newFilter ? null : newFilter));
-    console.log(tracksData)
   }
   return (
     <div className={styles.centerblockFilter}>

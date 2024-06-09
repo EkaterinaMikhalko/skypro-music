@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import Bar from "@/components/Bar/Bar";
 import Playlist from "@/components/Playlist/Playlist";
 import styles from "./page.module.css";
+import Filter from "@/components/Filters/Filters";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           </nav>
           <div className={styles.mainCenterblock}>
             <Centerblock />
+            <Filter />
             <Playlist/>
           </div>
           <Sidebar />

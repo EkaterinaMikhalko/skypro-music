@@ -3,8 +3,7 @@ import styles from "./Track.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { trackType } from "../types";
 import { setCurrentTrack, setIsPlaying } from "@/store/features/playlistSlice";
-import { useEffect, useRef } from "react";
-import { formatDurationInMin } from "@/utils";
+import { formatDurationInMin } from "@/lib/formatDuration";
 
 type TrackType = {
   track: trackType;
@@ -49,7 +48,7 @@ export default function Track({ track, tracksData }: TrackType) {
               )
             ) : (
               <svg className={styles.trackTitleSvg}>
-                <use xlinkHref={"img/icon/sprite.svg#icon-note"} />
+                <use xlinkHref={"/img/icon/sprite.svg#icon-note"} />
               </svg>
             )}
           </div>
@@ -67,7 +66,7 @@ export default function Track({ track, tracksData }: TrackType) {
         </div>
         <div className={styles.trackTime}>
           <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-like" />
           </svg>
           <span className={styles.trackTimeText}>
             {formatDurationInMin(duration_in_seconds)}

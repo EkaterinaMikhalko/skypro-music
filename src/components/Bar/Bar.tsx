@@ -11,7 +11,7 @@ import {
   setPrevTrack,
   setIsPlaying,
 } from "@/store/features/playlistSlice";
-import { formatDurationInMin } from "@/utils";
+import { formatDurationInMin } from "@/lib/formatDuration";
 
 export default function Bar() {
   const dispatch = useAppDispatch();
@@ -139,7 +139,7 @@ export default function Bar() {
                     className={styles.playerBtnPrev}
                   >
                     <svg className={styles.playerBtnPrevSvg}>
-                      <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+                      <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
                     </svg>
                   </div>
                   <div
@@ -148,7 +148,7 @@ export default function Bar() {
                   >
                     <svg className={styles.playerBtnPlaySvg}>
                       <use
-                        xlinkHref={`img/icon/sprite.svg#${
+                        xlinkHref={`/img/icon/sprite.svg#${
                           isPlaying ? "icon-pause" : "icon-play"
                         }`}
                       />
@@ -159,7 +159,7 @@ export default function Bar() {
                     className={styles.playerBtnNext}
                   >
                     <svg className={styles.playerBtnNextSvg}>
-                      <use xlinkHref="img/icon/sprite.svg#icon-next" />
+                      <use xlinkHref="/img/icon/sprite.svg#icon-next" />
                     </svg>
                   </div>
                   <div
@@ -174,7 +174,7 @@ export default function Bar() {
                         [styles.playerBtnRepeatSvgActive]: isLoop,
                       })}
                     >
-                      <use xlinkHref={`img/icon/sprite.svg#icon-repeat`} />
+                      <use xlinkHref={`/img/icon/sprite.svg#icon-repeat`} />
                     </svg>
                   </div>
                   <div
@@ -189,7 +189,7 @@ export default function Bar() {
                         [styles.playerBtnShuffleSvgActive]: isShuffled,
                       })}
                     >
-                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+                      <use xlinkHref="/img/icon/sprite.svg#icon-shuffle" />
                     </svg>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function Bar() {
                   <div className={styles.trackPlayContain}>
                     <div className={styles.trackPlayImage}>
                       <svg className={styles.trackPlaySvg}>
-                        <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                        <use xlinkHref="/img/icon/sprite.svg#icon-note" />
                       </svg>
                     </div>
                     <div className={styles.trackPlayAuthor}>
@@ -225,7 +225,7 @@ export default function Bar() {
                       )}
                     >
                       <svg className={styles.trackPlayLikeSvg}>
-                        <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                        <use xlinkHref="/img/icon/sprite.svg#icon-like" />
                       </svg>
                     </div>
                     <div
@@ -235,7 +235,7 @@ export default function Bar() {
                       )}
                     >
                       <svg className={styles.trackPlayDislikeSvg}>
-                        <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+                        <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
                       </svg>
                     </div>
                   </div>
@@ -245,7 +245,7 @@ export default function Bar() {
                 <div className={styles.volumeContent}>
                   <div className={styles.volumeImage}>
                     <svg className={styles.volumeSvg}>
-                      <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+                      <use xlinkHref="/img/icon/sprite.svg#icon-volume" />
                     </svg>
                   </div>
                   <div
