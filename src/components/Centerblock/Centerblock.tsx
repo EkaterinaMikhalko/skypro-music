@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ChangeEvent, useState } from "react";
 import styles from "./Centerblock.module.css";
 import { useAppDispatch } from "@/hooks";
@@ -26,7 +26,7 @@ export default function Centerblock() {
           onChange={handleChange}
         />
       </div>
-      <h2 className={styles.centerblockH2}>Треки</h2>
+      {/* <h2 className={styles.centerblockH2}>Треки</h2> */}
     </>
   );
 }

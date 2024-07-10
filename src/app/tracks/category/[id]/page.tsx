@@ -1,11 +1,41 @@
+import { getCategoryTracks } from "@/api/tracks";
+import Playlist from "@/components/Playlist/Playlist";
+import styles from "@components/Centerblock/Centerblock.module.css";
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  AwaitedReactNode,
+} from "react";
+
 type CategoryType = {
-    params: {id: string}
-}
+  params: { id: string };
+};
 
-export default function CategoryPage ({params}: CategoryType ){
-    return (
-  <div>
+export default async function CategoryPage({ params }: CategoryType) {
+  const categoryTracks = await getCategoryTracks(params.id);
+  let playlistTitle;
+  switch (params.id) {
+    case "1":
+      playlistTitle = "Плейлист дня";
+      break;
 
-  </div>
-    )
+    case "2":
+      playlistTitle = "100 танцевальных хитов";
+      break;
+
+    case "3":
+      playlistTitle = "Инди-заряд";
+      break;
+
+    default:
+      playlistTitle = "Треки";
+      break;
+  }
+  return (
+    <div>
+      <h2 className={styles.centerblockH2}>{playlistTitle}</h2>
+      <Playlist tracks={categoryTracks} playlist={categoryTracks} />
+    </div>
+  );
 }

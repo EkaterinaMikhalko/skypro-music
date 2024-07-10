@@ -17,9 +17,9 @@ export default function Menu() {
       {isOpened && (<div className={styles.navMenu}>
         <ul className={styles.menuList}>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+            <Link href="/tracks" className={styles.menuLink}>
               Главное
-            </a>
+            </Link>
           </li>
           <li className={styles.menuItem}>
             <a href="#" className={styles.menuLink}>
