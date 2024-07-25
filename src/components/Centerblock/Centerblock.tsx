@@ -1,8 +1,8 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import styles from "./Centerblock.module.css";
-import { useAppDispatch } from "@/hooks";
 import { setFilters } from "@/store/features/playlistSlice";
+import { useAppDispatch } from "@/hooks/store";
 
 export default function Centerblock() {
   const [searchValue, setSearchValue] = useState("");

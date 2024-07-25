@@ -19,3 +19,8 @@ export type trackType = {
     stared_user: userType[],
     tracksData: string[],
 }
+
+export type SigninFormType = {
+    email: string;
+    password: string;
+  };

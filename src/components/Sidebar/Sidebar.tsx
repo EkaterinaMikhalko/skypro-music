@@ -1,12 +1,14 @@
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
 import Image from "next/image";
+import User from "../User/User";
 
 export default function Sidebar() {
   return (
     <>
       <div className={styles.mainSidebar}>
-        <div className={styles.sidebarPersonal}>
+        <User/>
+        {/* <div className={styles.sidebarPersonal}>
           <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
           <div className={styles.sidebarIcon}>
             <Link href="/signin">
@@ -15,7 +17,7 @@ export default function Sidebar() {
               </svg>
             </Link>
           </div>
-        </div>
+        </div> */}
         <div className={styles.sidebarBlock}>
           <div className={styles.sidebarList}>
             <div className={styles.sidebarItem}>
