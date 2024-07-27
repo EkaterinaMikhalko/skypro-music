@@ -1,9 +1,9 @@
 import { trackType } from "@/components/types";
 import styles from "./FilterItem.module.css";
 import classNames from "classnames";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setFilters } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 
 type FilterItemType = {
   title: string;
@@ -25,6 +25,7 @@ export default function FilterItem({
   const [filterNumber, setFilterNumber] = useState<number>(0);
   const tracksData = useAppSelector((state) => state.playlist.initialTracks);
   const dispatch = useAppDispatch();
+  
   const getFilterList = () => {
     if (value !== "order") {
       const array = new Set(

@@ -1,9 +1,9 @@
 "use client";
 import styles from "./Track.module.css";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import { trackType } from "../types";
 import { setCurrentTrack, setIsPlaying } from "@/store/features/playlistSlice";
 import { formatDurationInMin } from "@/lib/formatDuration";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 
 type TrackType = {
   track: trackType;

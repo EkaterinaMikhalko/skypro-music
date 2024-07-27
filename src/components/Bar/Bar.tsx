@@ -4,7 +4,6 @@ import styles from "./Bar.module.css";
 import classNames from "classnames";
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
   setIsShuffle,
   setNextTrack,
@@ -12,6 +11,7 @@ import {
   setIsPlaying,
 } from "@/store/features/playlistSlice";
 import { formatDurationInMin } from "@/lib/formatDuration";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 
 export default function Bar() {
   const dispatch = useAppDispatch();

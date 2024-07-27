@@ -2,23 +2,23 @@ import { useInitializeLikedTracks } from "@/hooks/likes";
 import styles from "./User.module.css";
 import { useAppSelector } from "@/hooks/store";
 export default function User() {
-  useInitializeLikedTracks();
+//   useInitializeLikedTracks();
 
-  const userName = useAppSelector((state) => state.user.user?.username);
+//   const userName = useAppSelector((state) => state.user.user?.username);
 
-  if (!userName) {
-    return null;
-  }
+//   if (!userName) {
+//     return null;
+//   }
 
   return (
     <div className={styles.sidebarPersonal}>
-      <p className={styles.sidebarPersonalName}>{userName}</p>
+      <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
 
-      <Icon
+      {/* <Icon
         name="logout"
         wrapperClass={styles.sidebarIcon}
         iconClass={styles.sidebarIconSvg}
-      />
+      /> */}
     </div>
   );
 }

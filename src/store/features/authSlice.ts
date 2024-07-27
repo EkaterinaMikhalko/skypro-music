@@ -1,5 +1,5 @@
-import { fetchTokens, fetchUser } from "@/api/user";
-import { SigninFormType, userType } from "@/components/types";
+import { fetchSignup, fetchTokens, fetchUser } from "@/api/user";
+import { SigninFormType, SignupFormType, userType } from "@/components/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const getUser = createAsyncThunk(
@@ -17,6 +17,14 @@ export const getTokens = createAsyncThunk(
     return tokens;
   }
 );
+
+export const getSignup = createAsyncThunk(
+  "user/getSignup",
+  async ({ email, password, username }: SignupFormType) => {
+      const user = await fetchSignup({ email, password, username })
+      return user
+  }
+)
 
 type AuthStateType = {
   user: null | userType;
