@@ -23,8 +23,6 @@ export default function Playlist({
 
   return (
     <>
-      
-
       <div className={styles.centerblockContent}>
         <div className={styles.contentTitle}>
           <div className={classNames(styles.playlistTitleCol, styles.col01)}>

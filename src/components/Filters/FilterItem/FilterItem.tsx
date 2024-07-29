@@ -55,7 +55,6 @@ export default function FilterItem({
       setFilterNumber(optionList.length);
     }
   }, [optionList, value]);
-  console.log(optionList);
   getFilterList();
   return (
     <>

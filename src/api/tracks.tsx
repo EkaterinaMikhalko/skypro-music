@@ -1,3 +1,5 @@
+import { likeTrackFetchType } from "@/components/types";
+
 const apiUrl = 'https://webdev-music-003b5b991590.herokuapp.com/catalog/';
 
 export async function getTracks() {
@@ -29,6 +31,36 @@ export async function fetchFavouriteTracks(access: string) {
   });
   if (!response.ok) {
     throw new Error("Ошибка получения данных");
+  }
+  const responseData = await response.json();
+  return responseData.data;
+}
+
+export async function likeTrackFetch({access, id}: likeTrackFetchType) {
+  const response = await fetch(apiUrl + `track/${id}/favorite/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    })
+  if (!response.ok) {
+    throw new Error("ошибка при отправке данных")  
+  }
+  const responseData = await response.json();
+  return responseData.data;
+}
+
+export async function dislikeTrackFetch({access, id}: likeTrackFetchType) {
+  const response = await fetch(apiUrl + `track/${id}/favorite/`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    })
+  if (!response.ok) {
+    throw new Error("ошибка при отправке данных")  
   }
   const responseData = await response.json();
   return responseData.data;

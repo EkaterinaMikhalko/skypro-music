@@ -1,4 +1,4 @@
-import { fetchSignup, fetchTokens, fetchUser } from "@/api/user";
+import { fetchSignup, fetchTokens, fetchUser, refreshToken } from "@/api/user";
 import { SigninFormType, SignupFormType, userType } from "@/components/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -14,6 +14,7 @@ export const getTokens = createAsyncThunk(
   "user/getTokens",
   async ({ email, password }: SigninFormType) => {
     const tokens = await fetchTokens({ email, password });
+    console.log(tokens)
     return tokens;
   }
 );
@@ -21,8 +22,16 @@ export const getTokens = createAsyncThunk(
 export const getSignup = createAsyncThunk(
   "user/getSignup",
   async ({ email, password, username }: SignupFormType) => {
-      const user = await fetchSignup({ email, password, username })
-      return user
+    const user = await fetchSignup({ email, password, username });
+    return user;
+  }
+);
+
+export const getNewAccessToken = createAsyncThunk(
+  "user/getNewAccessToken",
+  async ( refresh: string) => {
+      const token = await refreshToken( refresh )
+      return token
   }
 )
 
@@ -45,20 +54,11 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // setAuthState: (state, action: PayloadAction<boolean>) => {
-    //   state.isAuth = action.payload;
-    // },
-    // setUser: (state, action: PayloadAction<string>) => {
-    //   state.user = {
-    //     email: action.payload,
-    //     password: action.payload,
-    //   };
-    // },
-    logout : (state) =>{
+    logout: (state) => {
       state.user = null;
       state.tokens.access = null;
       state.tokens.refresh = null;
-    }
+    },
   },
   extraReducers(builder) {
     builder
@@ -73,10 +73,15 @@ const authSlice = createSlice({
             access: null | string;
             refresh: null | string;
           }>
-        ) => {state.tokens.access = action.payload.access
-          state.tokens.refresh = action.payload.refresh
+        ) => {
+          state.tokens.access = action.payload.access;
+          state.tokens.refresh = action.payload.refresh;
         }
-      );
+      ).addCase(getSignup.fulfilled, (state, action: PayloadAction<userType>) => {
+        state.user = action.payload;
+    }).addCase(getNewAccessToken.fulfilled, (state, action: PayloadAction<string>) => {
+        state.tokens.access = action.payload;
+    })
   },
 });
 

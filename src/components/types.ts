@@ -31,3 +31,8 @@ export type SignupFormType = {
   password: string;
   username: string;
 };
+
+export type likeTrackFetchType = {
+  access: string | null,
+  id: string
+}

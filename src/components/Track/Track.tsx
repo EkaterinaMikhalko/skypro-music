@@ -34,7 +34,6 @@ export default function Track({ track, tracksData }: TrackType) {
   //   setIsPlaying(true);
   // }, [currentTrack]);
 
-
   return (
     <div onClick={handleTrackClick} className={styles.playlistItem}>
       <div className={styles.playlistTrack}>

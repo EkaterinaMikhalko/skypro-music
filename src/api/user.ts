@@ -17,7 +17,7 @@ export const fetchUser = async ({ email, password }: SigninFormType) => {
     }
   }
   const responseData = await response.json();
-  return responseData.data;
+  return responseData;
 };
 
 export const fetchTokens = async ({ email, password }: SigninFormType) => {
@@ -36,7 +36,7 @@ export const fetchTokens = async ({ email, password }: SigninFormType) => {
     }
   }
   const responseData = await response.json();
-  return responseData.data;
+  return responseData;
 };
 
 export const refreshToken = async (refresh: string) => {
@@ -58,7 +58,7 @@ export const refreshToken = async (refresh: string) => {
     throw new Error("Сервер сломался");
   }
   const responseData = await response.json();
-  return responseData.data;
+  return responseData;
 };
 
 export const fetchSignup = async ({
@@ -84,5 +84,5 @@ export const fetchSignup = async ({
     throw new Error("Сервер сломался");
   }
   const responseData = await response.json();
-  return responseData.data;
+  return responseData;
 };
