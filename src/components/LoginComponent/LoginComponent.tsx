@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./LoginComponent.module.css";
 import classNames from "classnames";
 import { useState } from "react";
@@ -40,7 +41,7 @@ export default function LoginComponent() {
           <form className={styles.modalFormLogin} action="#">
             <Link href="/">
               <div className={styles.modalLogo}>
-                {/* <Image src="./img/logo_modal.png" alt="logo"  width={140} height={21} /> */}
+                 <Image src="/img/logo_modal.png" alt="logo"  width={140} height={21} />
               </div>
             </Link>
             <input

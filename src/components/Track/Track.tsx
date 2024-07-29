@@ -16,25 +16,12 @@ export default function Track({ track, tracksData }: TrackType) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const { name, author, album, duration_in_seconds, _id } = track;
   const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
-  // const audioRef = useRef<null | HTMLAudioElement>(null);
+
   const dispatch = useAppDispatch();
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracksData }));
   };
-
-  // const togglePlay = () => {
-  //   if (audioRef.current) {
-  //     {
-  //       dispatch(setIsPlaying(!isPlaying));
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   audioRef.current?.play();
-  //   setIsPlaying(true);
-  // }, [currentTrack]);
 
   return (
     <div onClick={handleTrackClick} className={styles.playlistItem}>
