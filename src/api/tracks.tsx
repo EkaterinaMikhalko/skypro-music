@@ -1,6 +1,9 @@
 import { likeTrackFetchType } from "@/components/types";
 
 const apiUrl = "https://webdev-music-003b5b991590.herokuapp.com/catalog/";
+const ApiUrlCategoryPlaylist =
+"https://skypro-music-api.skyeng.tech/catalog/selection/";
+ // "https://webdev-music-003b5b991590.herokuapp.com/catalog/selection/";
 
 export async function getTracks() {
   const res = await fetch(apiUrl + "track/all/");
@@ -13,14 +16,14 @@ export async function getTracks() {
 }
 
 export async function getCategoryTracks(id: string) {
-  const res = await fetch(apiUrl + "selection/" + id);
+  const res = await fetch(ApiUrlCategoryPlaylist + id);
 
   if (!res.ok) {
     throw new Error("Ошибка при получении данных");
   }
-  const responseData = await res.json();
-  return responseData.data;
-}
+ const data = await res.json();
+  return data.items;
+} 
 
 export async function fetchFavouriteTracks(access: string) {
   const response = await fetch(apiUrl + "track/favorite/all/", {
