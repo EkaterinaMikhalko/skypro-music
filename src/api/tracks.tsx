@@ -1,14 +1,13 @@
-const apiUrl = 'https://skypro-music-api.skyeng.tech/catalog/';
-const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwOTcxMjcxLCJpYXQiOjE2OTA5NjAxMzEsImp0aSI6ImE4YzQ5NDNmOWNmNTRlZjI5NmFmNTMyOWUwODM4YWQ5IiwidXNlcl9pZCI6NzkyfQ.5n8YHTjsgAnYnc4gioyV1wPnxM2D16PS6c9kNhC-JoE";
+const apiUrl = 'https://webdev-music-003b5b991590.herokuapp.com/catalog/';
+
 export async function getTracks() {
   const res = await fetch(apiUrl+"track/all/");
 
   if (!res.ok) {
     throw new Error("Ошибка при получении данных");
   }
-
-  return res.json();
+const responseData = await res.json();
+  return responseData.data;
 }
 
 export async function getCategoryTracks(id: string) {
@@ -17,12 +16,13 @@ export async function getCategoryTracks(id: string) {
   if (!res.ok) {
     throw new Error("Ошибка при получении данных");
   }
-  const data = await res.json();
-  return data.items;
+  const responseData = await res.json();
+  return responseData.items.data;
 }
 
 export async function fetchFavouriteTracks(access: string) {
   const response = await fetch(apiUrl + "track/favorite/all/", {
+    method: "GET",
     headers: {
       Authorization: `Bearer ${access}`,
     },
@@ -30,5 +30,6 @@ export async function fetchFavouriteTracks(access: string) {
   if (!response.ok) {
     throw new Error("Ошибка получения данных");
   }
-  return response.json();
+  const responseData = await response.json();
+  return responseData.data;
 }

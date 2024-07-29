@@ -4,9 +4,6 @@ import Track from "../Track/Track";
 import styles from "./Playlist.module.css";
 import { getTracks } from "@/api/tracks";
 import { trackType } from "../types";
-import Filter from "../Filters/Filters";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setInitialTracks } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
 
 export default function Playlist({
@@ -16,15 +13,10 @@ export default function Playlist({
   tracks: trackType[];
   playlist: trackType[];
 }) {
-  // const dispatch = useAppDispatch();
-  // const [tracks, setTracks] = useState<trackType[]>([]);
-  //const filteredTracks = useAppSelector((state)=> state.playlist.filteredTracks)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getTracks().then(() => {
-      // setTracks(tracksData)
-      // dispatch(setInitialTracks({ initialTracks: tracksData }));
       setLoading(false);
     });
   }, []);
@@ -55,7 +47,7 @@ export default function Playlist({
             ? "Идёт загрузка"
             : tracks?.length
             ? tracks?.map((track) => (
-                <Track key={track.id} track={track} tracksData={playlist} />
+                <Track key={track._id} track={track} tracksData={playlist} />
               ))
             : "Ничего не найдено"}
         </div>

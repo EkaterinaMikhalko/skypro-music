@@ -1,8 +1,8 @@
 import { SigninFormType, SignupFormType } from "@/components/types";
 
-const apiUrl = "https://skypro-music-api.skyeng.tech/user/";
+const apiUrl = "https://webdev-music-003b5b991590.herokuapp.com/user/";
 export const fetchUser = async ({ email, password }: SigninFormType) => {
-  const response = await fetch(apiUrl + `/login/`, {
+  const response = await fetch(apiUrl + `login/`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: {
@@ -17,11 +17,11 @@ export const fetchUser = async ({ email, password }: SigninFormType) => {
     }
   }
   const responseData = await response.json();
-  return responseData;
+  return responseData.data;
 };
 
 export const fetchTokens = async ({ email, password }: SigninFormType) => {
-  const response = await fetch(apiUrl + `/token/`, {
+  const response = await fetch(apiUrl + `token/`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: {
@@ -36,7 +36,7 @@ export const fetchTokens = async ({ email, password }: SigninFormType) => {
     }
   }
   const responseData = await response.json();
-  return responseData;
+  return responseData.data;
 };
 
 export const refreshToken = async (refresh: string) => {
@@ -58,7 +58,7 @@ export const refreshToken = async (refresh: string) => {
     throw new Error("Сервер сломался");
   }
   const responseData = await response.json();
-  return responseData;
+  return responseData.data;
 };
 
 export const fetchSignup = async ({
@@ -78,11 +78,11 @@ export const fetchSignup = async ({
     },
   });
 
-  if (response.status === 400) {
-    throw new Error("Не удалось зарегистрировать пользователя");
+  if (response.status === 403) {
+    throw new Error("Введенный Email уже занят");
   } else if (response.status === 500) {
     throw new Error("Сервер сломался");
   }
   const responseData = await response.json();
-  return responseData;
+  return responseData.data;
 };
