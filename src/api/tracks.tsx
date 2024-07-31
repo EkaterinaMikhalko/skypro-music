@@ -1,4 +1,4 @@
-import { likeTrackFetchType } from "@/components/types";
+import { likeTrackFetchType, trackType } from "@/components/types";
 
 const apiUrl = "https://webdev-music-003b5b991590.herokuapp.com/catalog/";
 const ApiUrlCategoryPlaylist =
@@ -17,12 +17,14 @@ export async function getTracks() {
 
 export async function getCategoryTracks(id: string) {
   const res = await fetch(ApiUrlCategoryPlaylist + id);
-
+console.log(id)
+const allTracksData = await getTracks()
   if (!res.ok) {
     throw new Error("Ошибка при получении данных");
   }
  const data = await res.json();
-  return data.items;
+ console.log (data);
+  return {items:allTracksData.filter((track: trackType)=> data.data.items.includes(track._id)), title:data.data.name};
 } 
 
 export async function fetchFavouriteTracks(access: string) {

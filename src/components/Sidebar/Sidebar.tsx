@@ -21,7 +21,7 @@ export default function Sidebar() {
         <div className={styles.sidebarBlock}>
           <div className={styles.sidebarList}>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/1">
+              <Link className={styles.sidebarLink} href="/tracks/category/2">
                 <Image
                   alt="day's playlist"
                   className={styles.sidebarImg}
@@ -32,7 +32,7 @@ export default function Sidebar() {
               </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/2">
+              <Link className={styles.sidebarLink} href="/tracks/category/3">
                 <Image
                   className={styles.sidebarImg}
                   src="/img/playlist02.png"
@@ -43,7 +43,7 @@ export default function Sidebar() {
               </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/3">
+              <Link className={styles.sidebarLink} href="/tracks/category/4">
                 <Image
                   className={styles.sidebarImg}
                   src="/img/playlist03.png"
