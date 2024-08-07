@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppSelector } from "@/hooks";
+import { useAppSelector } from "@/hooks/store";
 import styles from "./Filter.module.css";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";

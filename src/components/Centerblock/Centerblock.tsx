@@ -1,8 +1,8 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import styles from "./Centerblock.module.css";
-import { useAppDispatch } from "@/hooks";
 import { setFilters } from "@/store/features/playlistSlice";
+import { useAppDispatch } from "@/hooks/store";
 
 export default function Centerblock() {
   const [searchValue, setSearchValue] = useState("");
@@ -15,7 +15,7 @@ export default function Centerblock() {
     <>
       <div className={styles.centerblockSearch}>
         <svg className={styles.searchSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-search" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-search" />
         </svg>
         <input
           className={styles.searchText}
@@ -26,7 +26,6 @@ export default function Centerblock() {
           onChange={handleChange}
         />
       </div>
-      {/* <h2 className={styles.centerblockH2}>Треки</h2> */}
     </>
   );
 }

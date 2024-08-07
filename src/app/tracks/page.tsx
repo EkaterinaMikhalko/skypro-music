@@ -1,12 +1,12 @@
 "use client";
 import Playlist from "@/components/Playlist/Playlist";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useEffect, useState } from "react";
 import { trackType } from "@/components/types";
 import { getTracks } from "@/api/tracks";
 import { setInitialTracks } from "@/store/features/playlistSlice";
 import Filter from "@/components/Filters/Filters";
 import styles from "@components/Centerblock/Centerblock.module.css";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 
 export default function MainTrackPage() {
   const dispatch = useAppDispatch();

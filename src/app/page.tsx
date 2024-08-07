@@ -27,7 +27,7 @@ export default function Home() {
           <div className={styles.mainCenterblock}>
             <Centerblock />
             <Filter />
-            <Playlist/>
+            <Playlist tracks={[]} playlist={[]}/>
           </div>
           <Sidebar />
         </main>

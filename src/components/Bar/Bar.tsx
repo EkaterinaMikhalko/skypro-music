@@ -4,7 +4,6 @@ import styles from "./Bar.module.css";
 import classNames from "classnames";
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
   setIsShuffle,
   setNextTrack,
@@ -12,6 +11,8 @@ import {
   setIsPlaying,
 } from "@/store/features/playlistSlice";
 import { formatDurationInMin } from "@/lib/formatDuration";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
+import LikeTrackComponent from "../LikeTrackComponent/LikeTrackComponent";
 
 export default function Bar() {
   const dispatch = useAppDispatch();
@@ -217,7 +218,8 @@ export default function Bar() {
                       </Link>
                     </div>
                   </div>
-                  <div className={styles.trackPlayLikeDis}>
+                  <LikeTrackComponent currentTrack={currentTrack}/>
+                  {/* <div className={styles.trackPlayLikeDis}>
                     <div
                       className={classNames(
                         styles.trackPlayLike,
@@ -238,7 +240,7 @@ export default function Bar() {
                         <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
                       </svg>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className={styles.barVolumeBlock}>

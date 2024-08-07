@@ -1,12 +1,14 @@
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
 import Image from "next/image";
+import User from "../User/User";
 
 export default function Sidebar() {
   return (
     <>
       <div className={styles.mainSidebar}>
-        <div className={styles.sidebarPersonal}>
+        <User/>
+        {/* <div className={styles.sidebarPersonal}>
           <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
           <div className={styles.sidebarIcon}>
             <Link href="/signin">
@@ -15,11 +17,11 @@ export default function Sidebar() {
               </svg>
             </Link>
           </div>
-        </div>
+        </div> */}
         <div className={styles.sidebarBlock}>
           <div className={styles.sidebarList}>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/1">
+              <Link className={styles.sidebarLink} href="/tracks/category/2">
                 <Image
                   alt="day's playlist"
                   className={styles.sidebarImg}
@@ -30,7 +32,7 @@ export default function Sidebar() {
               </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/2">
+              <Link className={styles.sidebarLink} href="/tracks/category/3">
                 <Image
                   className={styles.sidebarImg}
                   src="/img/playlist02.png"
@@ -41,7 +43,7 @@ export default function Sidebar() {
               </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href="/tracks/category/3">
+              <Link className={styles.sidebarLink} href="/tracks/category/4">
                 <Image
                   className={styles.sidebarImg}
                   src="/img/playlist03.png"
